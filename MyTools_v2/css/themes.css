@@ -1,0 +1,103 @@
+/* Theme System */
+:root {
+    /* Light Theme (Default) */
+    --light-bg: #ffffff;
+    --light-surface: #f5f5f5;
+    --light-surface-2: #e5e5e5;
+    --light-text: #333333;
+    --light-text-secondary: #666666;
+    --light-primary: #2196f3;
+    --light-primary-dark: #1976d2;
+    --light-error: #f44336;
+    --light-success: #4caf50;
+    --light-border: rgba(0, 0, 0, 0.12);
+    --light-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Dark Theme */
+    --dark-bg: #121212;
+    --dark-surface: #1e1e1e;
+    --dark-surface-2: #2d2d2d;
+    --dark-text: #ffffff;
+    --dark-text-secondary: rgba(255, 255, 255, 0.7);
+    --dark-primary: #64b5f6;
+    --dark-primary-dark: #42a5f5;
+    --dark-error: #ff5252;
+    --dark-success: #69f0ae;
+    --dark-border: rgba(255, 255, 255, 0.12);
+    --dark-shadow: rgba(0, 0, 0, 0.3);
+
+    /* Default Theme (Light) */
+    --bg-color: var(--light-bg);
+    --surface-color: var(--light-surface);
+    --surface-color-2: var(--light-surface-2);
+    --text-color: var(--light-text);
+    --text-secondary: var(--light-text-secondary);
+    --primary-color: var(--light-primary);
+    --primary-dark: var(--light-primary-dark);
+    --error-color: var(--light-error);
+    --success-color: var(--light-success);
+    --border-color: var(--light-border);
+    --shadow-color: var(--light-shadow);
+}
+
+/* Dark Theme Class */
+body.dark-theme {
+    --bg-color: var(--dark-bg);
+    --surface-color: var(--dark-surface);
+    --surface-color-2: var(--dark-surface-2);
+    --text-color: var(--dark-text);
+    --text-secondary: var(--dark-text-secondary);
+    --primary-color: var(--dark-primary);
+    --primary-dark: var(--dark-primary-dark);
+    --error-color: var(--dark-error);
+    --success-color: var(--dark-success);
+    --border-color: var(--dark-border);
+    --shadow-color: var(--dark-shadow);
+}
+
+/* Applied Theme Styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.app-header {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.control-section {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.category-btn {
+    background-color: var(--surface-color-2);
+    color: var(--text-color);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#search-input,
+select {
+    background-color: var(--surface-color-2);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+.fab {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.fab:hover {
+    background-color: var(--primary-dark);
+}

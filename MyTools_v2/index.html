@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTools.io</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Defer JavaScript loading -->
+    <script src="js/models.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/components/Category.js" defer></script>
+    <script src="js/components/Shortcut.js" defer></script>
+    <script src="js/components/Statistics.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="header-left">
+            <h1>MyTools.io</h1>
+        </div>
+        <div class="header-right">
+            <button id="theme-toggle" class="icon-button">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button id="view-stats" class="icon-button">
+                <i class="fas fa-chart-bar"></i>
+            </button>
+            <button id="settings" class="icon-button">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Control Bar -->
+    <div class="control-section">
+        <!-- Category Navigation -->
+        <div class="category-bar">
+            <button class="category-btn active" data-category="all">All</button>
+            <div id="category-list" class="category-list"></div>
+            <button id="add-category" class="category-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <!-- Search and Controls -->
+        <div class="controls-bar">
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="search" id="search-input" placeholder="Search shortcuts...">
+                <select id="search-filter">
+                    <option value="all">All</option>
+                    <option value="name">Name</option>
+                    <option value="url">URL</option>
+                    <option value="category">Category</option>
+                </select>
+            </div>
+            
+            <div class="view-controls">
+                <button id="grid-view" class="view-btn active">
+                    <i class="fas fa-grid-2"></i>
+                </button>
+                <button id="list-view" class="view-btn">
+                    <i class="fas fa-list"></i>
+                </button>
+                <select id="sort-by">
+                    <option value="name">Name</option>
+                    <option value="recent">Recent</option>
+                    <option value="popular">Most Used</option>
+                    <option value="category">Category</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div id="shortcuts-grid" class="shortcuts-grid"></div>
+    </main>
+
+    <!-- Add/Edit Category Modal -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add Category</h2>
+            <form id="category-form">
+                <div class="form-group">
+                    <label for="category-name">Name</label>
+                    <input type="text" id="category-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="category-color">Color</label>
+                    <input type="color" id="category-color" value="#2196f3">
+                </div>
+                <div class="form-group">
+                    <label for="category-icon">Icon</label>
+                    <input type="text" id="category-icon" placeholder="📁">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="category-cancel">Cancel</button>
+                    <button type="submit" class="btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Shortcut Modal -->
+    <div id="shortcut-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add Shortcut</h2>
+            <form id="shortcut-form">
+                <div class="form-group">
+                    <label for="shortcut-name">Name</label>
+                    <input type="text" id="shortcut-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="shortcut-url">URL</label>
+                    <input type="url" id="shortcut-url" required>
+                </div>
+                <div class="form-group">
+                    <label for="shortcut-category">Category</label>
+                    <select id="shortcut-category" required>
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="shortcut-icon">Custom Icon URL (optional)</label>
+                    <input type="url" id="shortcut-icon">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="shortcut-favorite">
+                        Add to Favorites
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="shortcut-cancel">Cancel</button>
+                    <button type="submit" class="btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="stats-modal" class="modal">
+        <div class="modal-content">
+            <h2>Usage Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Most Used</h3>
+                    <div id="most-used-stats"></div>
+                </div>
+                <div class="stat-card">
+                    <h3>Recent Activity</h3>
+                    <div id="recent-activity"></div>
+                </div>
+                <div class="stat-card">
+                    <h3>Categories</h3>
+                    <div id="category-stats"></div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="stats-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button id="add-shortcut-fab" class="fab">
+        <i class="fas fa-plus"></i>
+    </button>
+</body>
+</html>
